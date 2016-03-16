@@ -1,4 +1,4 @@
-default: sudo clean install
+default: sudo clean libvte-dev_0.28.2-5ubuntu1.1_amd64.deb
 
 export DEBFULLNAME="Felix Hummel"
 export DEBEMAIL="xfce4-terminal@felixhummel.de"
@@ -13,17 +13,17 @@ $(patch_name):
 
 vte-0.28.2:
 	apt-get source libvte9
-	sudo apt-get build-dep libvte9
+	sudo apt-get --yes build-dep libvte9
 
-libvte-dev_0.28.2-5ubuntu2_i386.deb: $(patch_name) vte-0.28.2
+libvte9_0.28.2-5ubuntu1.1_amd64.deb: $(patch_name) vte-0.28.2
 	cd vte-0.28.2/ \
 		&& patch -p1 < ../$(patch_name) \
 		&& dch --nmu "patch C-Home, C-End" \
 		&& debuild -us -uc -b
 
 .PHONY: install
-install: libvte-dev_0.28.2-5ubuntu2_i386.deb
-	sudo dpkg -i libvte-dev_0.28.2-5ubuntu2_i386.deb
+install: libvte9_0.28.2-5ubuntu1.1_amd64.deb
+	sudo dpkg -i libvte9_0.28.2-5ubuntu1.1_amd64.deb libvte-common_0.28.2-5ubuntu1.1_all.deb
 
 clean:
 	rm -rf vte-* vte_* libvte* python-vte*.deb
