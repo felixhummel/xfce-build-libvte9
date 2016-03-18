@@ -1,4 +1,4 @@
-default: sudo clean libvte-dev_0.28.2-5ubuntu1.1_amd64.deb
+default: sudo tools clean libvte9_0.28.2-5ubuntu1.1_amd64.deb
 
 export DEBFULLNAME="Felix Hummel"
 export DEBEMAIL="xfce4-terminal@felixhummel.de"
@@ -23,7 +23,10 @@ libvte9_0.28.2-5ubuntu1.1_amd64.deb: $(patch_name) vte-0.28.2
 
 .PHONY: install
 install: libvte9_0.28.2-5ubuntu1.1_amd64.deb
-	sudo dpkg -i libvte9_0.28.2-5ubuntu1.1_amd64.deb libvte-common_0.28.2-5ubuntu1.1_all.deb
+	sudo dpkg -i *.deb
+
+tools:
+	sudo apt-get --yes install build-essential devscripts lintian patch patchutils
 
 clean:
 	rm -rf vte-* vte_* libvte* python-vte*.deb
