@@ -2,11 +2,16 @@ Felix' libvte
 =============
 Fix Escape-Sequences for Ctrl-Home and Ctrl-End in libvte9.
 
-Prerequisites::
+```
+sudo apt-get --yes install build-essential devscripts lintian diffutils patch patchutils
+```
 
-    sudo apt-get --yes install build-essential devscripts lintian diffutils patch patchutils
+```
+make
+make install
+```
 
-::
-
-    make
-
+Restart terminal emulator and try it:
+```
+vi -c 'read !seq 99'
+```
